@@ -6,6 +6,7 @@ Created on Aug 14, 2025
 
 # MainPanel inherits from the built-in object class
 class MainPanel(object):
+    import sys as system
       
     '''
         classdocs
@@ -15,6 +16,9 @@ class MainPanel(object):
         self.appRoot = appRoot
         self.tk = tk
         
+    def on_exit_click(self):
+        self.system.exit() 
+           
     def build(self) :   
         # Configure row and column weights for expansion
         self.appRoot.grid_rowconfigure(0, weight=3) # Make the first Row Taller
@@ -38,6 +42,6 @@ class MainPanel(object):
         self.south_panel.grid(row=1, column=0, columnspan=2, sticky="nsew", padx=10, pady=10)
     
     
-        self.exit_button = self.tk.Button(self.south_panel, text="Exit")
+        self.exit_button = self.tk.Button(self.south_panel, text="Exit", command=self.on_exit_click)
         self.exit_button.place(relx=0.5, rely=0.5, anchor=self.tk.CENTER) # Center the button
     
