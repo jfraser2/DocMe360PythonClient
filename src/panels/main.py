@@ -56,9 +56,15 @@ class MainPanel(object):
 
         # Add Button to tab1
         self.tk.Button(tab1, text="Notifications")
-
+        # Add Read-only Text Area to tab1
+        self.notification_text_area = self.tk.Text(tab1, wrap="word")
+        self.notification_text_area.config(state="disabled")
+        
         # Add Button to tab2
         self.tk.Button(tab2, text="Templates")
+        # Add Read-only Text Area to tab1
+        self.template_text_area = self.tk.Text(tab2, wrap="word")
+        self.template_text_area.config(state="disabled")
 
         # Add tabs to the Notebook
         self.notebook.add(tab1, text="Notifications")
