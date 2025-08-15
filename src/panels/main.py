@@ -93,7 +93,13 @@ class MainPanel(object):
         if self.notifications_tab_text == selected_tab_text and self.notifications_tab_text != self.last_tab_clicked :
             self.notification_menu.build()
             self.last_tab_clicked = self.notifications_tab_text
+            self.notification_text_area.config(state="normal")
+            self.notification_text_area.delete("1.0", self.tk.END) # Delete from the first character to the end
+            self.notification_text_area.config(state="disabled")
             
         if self.templates_tab_text == selected_tab_text and self.templates_tab_text != self.last_tab_clicked :
             self.template_menu.build()
             self.last_tab_clicked = self.templates_tab_text        
+            self.template_text_area.config(state="normal")
+            self.template_text_area.delete("1.0", self.tk.END) # Delete from the first character to the end
+            self.template_text_area.config(state="disabled")
