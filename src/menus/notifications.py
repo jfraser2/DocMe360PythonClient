@@ -11,11 +11,11 @@ class NotificationMenu(object):
     classdocs
     '''
 
-    def __init__(self, menu_frame, tk, ttk, tab_frame, out_text_area):
+    def __init__(self, menu_frame, tk, ttk, app_root, out_text_area):
         self.menu_frame = menu_frame
         self.tk = tk
         self.ttk = ttk
-        self.tab_frame = tab_frame
+        self.app_root = app_root
         self.out_text_area = out_text_area
         self.link_font = self.tkFont.Font(family="TkDefaultFont", size=10, underline=True)
        
@@ -51,8 +51,14 @@ class NotificationMenu(object):
         # Add logic to change content or view
 
     def all_notifications(self):
-        print("Get All Notifications")
-        # Add logic to change content or view  
+#        print("Get All Notifications")
+        dialog = self.GetAllFormDialog(self.app_root, self.tk, self.ttk, "AllNotifications", self.out_text_area, "All Notifications")
+        dialog.build()
+        data = dialog.show()
+#        if data:
+#            print(f"Submitted Data: Name - {data['name']}, Email - {data['email']}")
+#        else:
+#            print("Dialog cancelled or no data submitted.")
         
     def find_by_id(self):
         print("Find Notification By Id")    

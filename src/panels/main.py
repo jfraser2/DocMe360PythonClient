@@ -38,7 +38,7 @@ class MainPanel(object):
         self.east_panel = self.tk.Frame(self.appRoot, bg="lightblue")
         
         self.notification_menu = self.NotificationMenu(self.east_panel, self.tk, self.ttk,
-            self.notification_tab_frame, self.notification_text_area)
+            self.appRoot, self.notification_text_area)
         # Notifications is the initial Tab        
         self.notification_menu.build()
         self.notifications_tab_text = "Notifications"
@@ -47,7 +47,7 @@ class MainPanel(object):
         self.east_panel.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
             
         self.template_menu = self.TemplateMenu(self.east_panel, self.tk, self.ttk,
-            self.template_tab_frame, self.template_text_area)
+            self.appRoot, self.template_text_area)
         self.templates_tab_text = "Templates"
         
         # Create a Frame to act as a "panel"
