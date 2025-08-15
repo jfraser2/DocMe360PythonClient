@@ -4,8 +4,17 @@ Reference Materials for Project<br/>
 My Existing Code from other Projects and Assessments<br/>
 Google, lol
 
-#Run in Eclipse(Do this first)
-after the Project is loaded in Eclipse(File Import from Git)<br/>
+#Run the Server Side in Eclipse(Do this first)
+The server side project is in Git, it needs Docker Desktop to run.<br/>
+The server side project name is: Joe-Fraser-DocMe360 and is loaded into Eclipse with<br/>
+(File Import from Git) using url: https://github.com/jfraser2/Joe-Fraser-DocMe360.git<br/>
+Follow all directions in the README.md<br/>
+
+#Run the client Side in Eclipse(Do this second)
+The Project is loaded into Eclipse(File Import from Git)<br/>
+using url: https://github.com/jfraser2/DocMe360PythonClient.git<br/>
+PyDev needs to be installed from the eclipse marketplace, into Eclipse.<br/>
+I made this a totally separate Eclipse install from my Java Eclipse.<br/>
 right click on Project DocMe360PythonClient<br/>
 Hover on Run As, If you have not made one yet, choose Run Configurations..., and, follow the directions from article<br/>
  

@@ -11,9 +11,10 @@ class TemplateMenu(object):
     classdocs
     '''
     
-    def __init__(self, frame, tk):
+    def __init__(self, frame, tk, out_text_area):
         self.frame = frame
         self.tk = tk
+        self.out_text_area = out_text_area
         self.link_font = self.tkFont.Font(family="TkDefaultFont", size=10, underline=True)
 
     def build(self):

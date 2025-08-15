@@ -29,10 +29,15 @@ class MainPanel(object):
         self.appRoot.grid_columnconfigure(0, weight=1)
         self.appRoot.grid_columnconfigure(1, weight=6) # Make second column wider
         
+        # Create a Notebook to act as a "tabbed panel"
+        self.buildTabbedPanel()
+        # Place the Notebook in the west Panel, Sticky "nsew" makes it fill the entire grid cell
+        self.notebook.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
+        
         # Create a Frame to act as a "panel"
         self.east_panel = self.tk.Frame(self.appRoot, bg="lightblue")
         
-        self.notification_menu = self.NotificationMenu(self.east_panel, self.tk)
+        self.notification_menu = self.NotificationMenu(self.east_panel, self.tk, self.notification_text_area)
         # Notifications is the initial Tab        
         self.notification_menu.build()
         self.notifications_tab_text = "Notifications"
@@ -40,14 +45,9 @@ class MainPanel(object):
         # Sticky "nsew" makes it fill the entire grid cell
         self.east_panel.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
             
-        self.template_menu = self.TemplateMenu(self.east_panel, self.tk)
+        self.template_menu = self.TemplateMenu(self.east_panel, self.tk, self.template_text_area)
         self.templates_tab_text = "Templates"
         
-        # Create a Notebook to act as a "tabbed panel"
-        self.buildTabbedPanel()
-        # Place the Notebook in the west Panel, Sticky "nsew" makes it fill the entire grid cell
-        self.notebook.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
-    
         # Create a Frame to act as a "panel"
         self.south_panel = self.tk.Frame(self.appRoot, bg="white")
         # Sticky "nsew" makes it fill the entire grid cell
