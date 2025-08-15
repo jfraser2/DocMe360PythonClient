@@ -9,7 +9,7 @@ class GetByIdFormDialog(object):
     classdocs
     '''
 
-    def __init__(self, frame, tk, selected_menu_item, out_text_area, title):
+    def __init__(self, frame, tk, ttk, selected_menu_item, out_text_area, title):
         self.frame = frame
         self.tk = tk
         self.selected_menu_item = selected_menu_item
