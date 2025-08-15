@@ -18,10 +18,9 @@ class TemplateMenu(object):
 
     def build(self):
         # clear the passed frame
-        widgets_in_frame = self.frame.winfo_children()
-        for widget in widgets_in_frame :
+        for widget in self.frame.winfo_children() :
             widget.destroy()
-        self.create_menu_items()    
+        self.create_menu_items()  
             
     def create_menu_items(self):
         # Example menu items
@@ -32,7 +31,7 @@ class TemplateMenu(object):
             ("UpdateTemplate", self.update_template)
         ]
 
-        # .grid() makes the button appear
+        # .grid() makes it fill the cell
         for text, command in menu_items:
             self.tk.Button(self.frame,
                 fg="#0000EE",  # Blue for unvisited link
