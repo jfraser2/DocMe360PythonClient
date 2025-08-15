@@ -5,21 +5,23 @@ Created on Aug 14, 2025
 '''
 
 class TemplateMenu(object):
+    from forms.get_all__dialog import GetAllFormDialog
     import tkinter.font as tkFont    
 
     '''
     classdocs
     '''
     
-    def __init__(self, frame, tk, out_text_area):
-        self.frame = frame
+    def __init__(self, menu_frame, tk, tab_frame, out_text_area):
+        self.menu_frame = menu_frame
         self.tk = tk
+        self.tab_frame = tab_frame
         self.out_text_area = out_text_area
         self.link_font = self.tkFont.Font(family="TkDefaultFont", size=10, underline=True)
 
     def build(self):
         # clear the passed frame
-        for widget in self.frame.winfo_children() :
+        for widget in self.menu_frame.winfo_children() :
             widget.destroy()
         self.create_menu_items()  
             
@@ -34,7 +36,7 @@ class TemplateMenu(object):
 
         # .grid() makes it fill the cell
         for text, command in menu_items:
-            self.tk.Button(self.frame,
+            self.tk.Button(self.menu_frame,
                 fg="#0000EE",  # Blue for unvisited link
                 bg="lightblue",
                 cursor="hand2",

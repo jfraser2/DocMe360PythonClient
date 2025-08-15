@@ -37,7 +37,8 @@ class MainPanel(object):
         # Create a Frame to act as a "panel"
         self.east_panel = self.tk.Frame(self.appRoot, bg="lightblue")
         
-        self.notification_menu = self.NotificationMenu(self.east_panel, self.tk, self.notification_text_area)
+        self.notification_menu = self.NotificationMenu(self.east_panel, self.tk,
+            self.notification_tab_frame, self.notification_text_area)
         # Notifications is the initial Tab        
         self.notification_menu.build()
         self.notifications_tab_text = "Notifications"
@@ -45,7 +46,8 @@ class MainPanel(object):
         # Sticky "nsew" makes it fill the entire grid cell
         self.east_panel.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
             
-        self.template_menu = self.TemplateMenu(self.east_panel, self.tk, self.template_text_area)
+        self.template_menu = self.TemplateMenu(self.east_panel, self.tk,
+            self.template_tab_frame, self.template_text_area)
         self.templates_tab_text = "Templates"
         
         # Create a Frame to act as a "panel"
@@ -62,20 +64,20 @@ class MainPanel(object):
         self.notebook = self.ttk.Notebook(self.appRoot)
 
         # Create individual tab frames
-        tab1 = self.ttk.Frame(self.notebook)
-        tab2 = self.ttk.Frame(self.notebook)
+        self.notification_tab_frame = self.ttk.Frame(self.notebook)
+        self.template_tab_frame = self.ttk.Frame(self.notebook)
 
         # Add Read-only Text Area to tab1
-        self.notification_text_area = self.tk.Text(tab1, wrap="word")
+        self.notification_text_area = self.tk.Text(self.notification_tab_frame, wrap="word")
         self.notification_text_area.config(state="disabled")
         
         # Add Read-only Text Area to tab1
-        self.template_text_area = self.tk.Text(tab2, wrap="word")
+        self.template_text_area = self.tk.Text(self.template_tab_frame, wrap="word")
         self.template_text_area.config(state="disabled")
 
         # Add tabs to the Notebook
-        self.notebook.add(tab1, text="Notifications")
-        self.notebook.add(tab2, text="Templates")
+        self.notebook.add(self.notification_tab_frame, text="Notifications")
+        self.notebook.add(self.template_tab_frame, text="Templates")
         
         # Bind the event handler
         self.notebook.bind("<<NotebookTabChanged>>", self.on_tab_changed)        
