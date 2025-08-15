@@ -6,6 +6,8 @@ Created on Aug 14, 2025
 
 # MainPanel inherits from the built-in object class
 class MainPanel(object):
+    from menus.notifications import NotificationMenu
+    from menus.templates import TemplateMenu
     import sys as system
       
     '''
@@ -25,13 +27,18 @@ class MainPanel(object):
         self.appRoot.grid_rowconfigure(0, weight=5) # Make the first Row Taller
         self.appRoot.grid_rowconfigure(1, weight=1)
         self.appRoot.grid_columnconfigure(0, weight=1)
-        self.appRoot.grid_columnconfigure(1, weight=4) # Make second column wider
+        self.appRoot.grid_columnconfigure(1, weight=6) # Make second column wider
         
         # Create a Frame to act as a "panel"
         self.east_panel = self.tk.Frame(self.appRoot, bg="lightblue")
+        
+        self.notification_menu = self.NotificationMenu(self.east_panel, self.tk)
+        self.template_menu = self.TemplateMenu(self.east_panel, self.tk)        
+        self.notification_menu.build()
+        
         # Sticky "nsew" makes it fill the cell
         self.east_panel.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
-     
+        
         # Create a Notebook to act as a "tabbed panel"
         self.buildTabbedPanel()
         # Place the Notebook in the west Panel
