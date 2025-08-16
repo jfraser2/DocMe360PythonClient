@@ -5,6 +5,9 @@ Created on Aug 15, 2025
 '''
 
 class GetByIdFormDialog(object):
+    from openapi_client.api.notification_controller_api import NotificationControllerApi
+    from openapi_client.api.template_controller_api import TemplateControllerApi
+    
     '''
     classdocs
     '''
