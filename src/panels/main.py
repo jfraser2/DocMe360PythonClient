@@ -8,6 +8,7 @@ Created on Aug 14, 2025
 class MainPanel(object):
     from menus.notifications import NotificationMenu
     from menus.templates import TemplateMenu
+    from tkinter import scrolledtext    
     import sys as system
       
     '''
@@ -68,11 +69,11 @@ class MainPanel(object):
         self.template_tab_frame = self.ttk.Frame(self.notebook)
 
         # Add Read-only Text Area to tab1
-        self.notification_text_area = self.tk.Text(self.notification_tab_frame, wrap="word")
+        self.notification_text_area = self.scrolledtext.ScrolledText(self.notification_tab_frame, wrap="none")
         self.notification_text_area.config(state="disabled")
         
         # Add Read-only Text Area to tab1
-        self.template_text_area = self.tk.Text(self.template_tab_frame, wrap="word")
+        self.template_text_area = self.scrolledtext.ScrolledText(self.template_tab_frame, wrap="none")
         self.template_text_area.config(state="disabled")
 
         # Add tabs to the Notebook
