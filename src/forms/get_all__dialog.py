@@ -5,16 +5,18 @@ Created on Aug 15, 2025
 '''
 
 class GetAllFormDialog(object):
+    from openapi_client.api.notification_controller_api import NotificationControllerApi
+    from openapi_client.api.template_controller_api import TemplateControllerApi
+    
     '''
     classdocs
     '''
     
-    def __init__(self, app_root, tk, ttk, selected_menu_item, out_text_area, title):
+    def __init__(self, app_root, tk, ttk, selected_menu_item, title):
         self.app_root = app_root
         self.tk = tk
         self.ttk = ttk
         self.selected_menu_item = selected_menu_item
-        self.out_text_area = out_text_area
         self.title = title
         
     def build(self):
@@ -33,7 +35,12 @@ class GetAllFormDialog(object):
         self.result = None  # To store the form data
 
     def submit_form(self):
-        self.result = None
+        if self.selected_menu_item == "AllNotifications" :
+            notification_controller = self.NotificationControllerApi()
+            self.result = notification_controller.all_notifications()
+        else :
+            template_controller = self.TemplateControllerApi()
+            self.result = template_controller.all_templates()   
         self.top.destroy()  # Close the dialog
 
     def cancel_dialog(self):

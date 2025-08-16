@@ -10,7 +10,14 @@ The server side project name is: Joe-Fraser-DocMe360 and is loaded into Eclipse 
 (File Import from Git) using url: https://github.com/jfraser2/Joe-Fraser-DocMe360.git<br/>
 Follow all directions in the README.md<br/>
 
-#Run the client Side in Eclipse(Do this second)
+# Required Client Side Installs(Do this second)
+open your fav Windows Shell Instance(Command Prompt Instance) as Administrator<br/>
+installs with pip3 will go to folder C:\Program Files\Python\Python313\Lib\site-packages<br/>
+pip3 install pydantic<br/>
+pip3 install python-dateutil<br/>
+pip3 install urllib3<br/>
+
+#Run the client Side in Eclipse(Do this third)
 The Project is loaded into Eclipse(File Import from Git)<br/>
 using url: https://github.com/jfraser2/DocMe360PythonClient.git<br/>
 PyDev needs to be installed from the eclipse marketplace, into Eclipse.<br/>

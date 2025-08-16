@@ -52,13 +52,15 @@ class NotificationMenu(object):
 
     def all_notifications(self):
 #        print("Get All Notifications")
-        dialog = self.GetAllFormDialog(self.app_root, self.tk, self.ttk, "AllNotifications", self.out_text_area, "All Notifications")
+        dialog = self.GetAllFormDialog(self.app_root, self.tk, self.ttk, "AllNotifications", "All Notifications")
         dialog.build()
         data = dialog.show()
-#        if data:
-#            print(f"Submitted Data: Name - {data['name']}, Email - {data['email']}")
-#        else:
-#            print("Dialog cancelled or no data submitted.")
+        if data :
+            self.out_text_area.config(state="normal")
+            self.out_text_area.delete("1.0", self.tk.END) # Delete from the first character to the end
+            self.out_text_area.insert("1.0", data)
+            self.out_text_area.config(state="disabled")
+            self.out_text_area.grid()
         
     def find_by_id(self):
         print("Find Notification By Id")    
