@@ -319,7 +319,8 @@ class ApiClient:
                 response_text = response_data.data.decode(encoding)
                 return_data = self.deserialize(response_text, response_type, content_type)
         finally:
-            if not 200 <= response_data.status <= 299:
+            error_exclusion_list = [400, 403, 404] # coded on the server
+            if not 200 <= response_data.status <= 299 and response_data.status not in error_exclusion_list :
                 raise ApiException.from_response(
                     http_resp=response_data,
                     body=response_text,
