@@ -3,10 +3,13 @@ Created on Aug 15, 2025
 
 @author: joe
 '''
+from openapi_client.exceptions import NotFoundException
 
 class GetByIdFormDialog(object):
     from openapi_client.api.notification_controller_api import NotificationControllerApi
     from openapi_client.api.template_controller_api import TemplateControllerApi
+    import sys
+    import traceback    
     
     '''
     classdocs
@@ -41,10 +44,22 @@ class GetByIdFormDialog(object):
         self.result = None  # To store the form data
 
     def submit_form(self):
-        self.result = {
-            "id": self.id_var.get()
-        }
-        self.top.destroy()  # Close the dialog
+        search_id =  self.id_var.get()
+        
+        try :
+            if self.selected_menu_item == "FindByNotificationId" :
+                notification_controller = self.NotificationControllerApi()
+                response = notification_controller.find_by_notification_id_without_preload_content(search_id)
+                self.result = response.read().decode('utf-8')
+#                print(self.result);
+            else :
+                template_controller = self.TemplateControllerApi()
+                response = template_controller.find_by_template_id_without_preload_content(search_id)
+                self.result = response.read().decode('utf-8')
+        except Exception as e :
+            self.result = self.process_general_exception(e)        
+        finally :           
+            self.top.destroy()  # Close the dialog
 
     def cancel_dialog(self):
         self.result = None
@@ -68,3 +83,16 @@ class GetByIdFormDialog(object):
         y = (screen_height - window_height) // 2
 
         window.geometry(f"+{x}+{y}")
+        
+    def process_general_exception(self, exception) :
+#        print(exception)
+        exc_type, exc_value, exc_traceback = self.sys.exc_info()
+        formatted_traceback = "".join(self.traceback.format_exception(exc_type, exc_value, exc_traceback))
+
+        error_data = {
+            "error_type": exc_type.__name__,
+            "error_message": str(exc_value),
+            "traceback": formatted_traceback
+        }
+                
+        return error_data  

@@ -6,8 +6,8 @@ Created on Aug 14, 2025
 
 class TemplateMenu(object):
     from forms.get_all_dialog import GetAllFormDialog
+    from forms.get_by_id_dialog import GetByIdFormDialog 
     import tkinter.font as tkFont    
-    import json
 
     '''
     classdocs
@@ -53,12 +53,27 @@ class TemplateMenu(object):
         # Add logic to change content or view
 
     def all_templates(self):
-        print("Get All Templates")
-        # Add logic to change content or view  
+        dialog = self.GetAllFormDialog(self.app_root, self.tk, self.ttk, "AllTemplates", "All Templates")
+        dialog.build()
+        data = dialog.show()
+        if data :
+            self.out_text_area.config(state="normal")
+            self.out_text_area.delete("1.0", self.tk.END) # Delete from the first character to the end
+            self.out_text_area.insert("1.0", data)
+            self.out_text_area.config(state="disabled")
+            self.out_text_area.grid()
         
     def find_by_id(self):
-        print("Find Template By Id")    
-        # Add logic to change content or view
+#        print("Find Template By Id")    
+        dialog = self.GetByIdFormDialog(self.app_root, self.tk, self.ttk, "FindByTemplateId", "Find Template By Id")
+        dialog.build()
+        data = dialog.show()
+        if data :
+            self.out_text_area.config(state="normal")
+            self.out_text_area.delete("1.0", self.tk.END) # Delete from the first character to the end
+            self.out_text_area.insert("1.0", data)
+            self.out_text_area.config(state="disabled")
+            self.out_text_area.grid()
           
     def update_template(self):
         print("Create Template")

@@ -7,6 +7,8 @@ Created on Aug 15, 2025
 class GetAllFormDialog(object):
     from openapi_client.api.notification_controller_api import NotificationControllerApi
     from openapi_client.api.template_controller_api import TemplateControllerApi
+    import sys
+    import traceback    
     
     '''
     classdocs
@@ -35,13 +37,19 @@ class GetAllFormDialog(object):
         self.result = None  # To store the form data
 
     def submit_form(self):
-        if self.selected_menu_item == "AllNotifications" :
-            notification_controller = self.NotificationControllerApi()
-            self.result = notification_controller.all_notifications()
-        else :
-            template_controller = self.TemplateControllerApi()
-            self.result = template_controller.all_templates()   
-        self.top.destroy()  # Close the dialog
+        try :
+            if self.selected_menu_item == "AllNotifications" :
+                notification_controller = self.NotificationControllerApi()
+                response = notification_controller.all_notifications_without_preload_content()
+                self.result = response.read().decode('utf-8')
+            else :
+                template_controller = self.TemplateControllerApi()
+                response = template_controller.all_templates_without_preload_content()
+                self.result = response.read().decode('utf-8')
+        except Exception as e :
+            self.result = self.process_general_exception(e)        
+        finally :           
+            self.top.destroy()  # Close the dialog
 
     def cancel_dialog(self):
         self.result = None
@@ -65,3 +73,16 @@ class GetAllFormDialog(object):
         y = (screen_height - window_height) // 2
 
         window.geometry(f"+{x}+{y}")
+        
+    def process_general_exception(self, exception) :
+#        print(exception)
+        exc_type, exc_value, exc_traceback = self.sys.exc_info()
+        formatted_traceback = "".join(self.traceback.format_exception(exc_type, exc_value, exc_traceback))
+
+        error_data = {
+            "error_type": exc_type.__name__,
+            "error_message": str(exc_value),
+            "traceback": formatted_traceback
+        }
+                
+        return error_data          
