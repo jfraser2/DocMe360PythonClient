@@ -36,8 +36,8 @@ class TestApiError(unittest.TestCase):
         model = ApiError()
         if include_optional:
             return ApiError(
-                status = '',
-                timestamp = '',
+                request_status = '',
+                timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 message = '',
                 debug_message = '',
                 sub_errors = [

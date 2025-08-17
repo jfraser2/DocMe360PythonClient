@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **request_status** | **str** |  | [optional] 
-**timestamp** | **str** |  | [optional] 
+**timestamp** | **datetime** |  | [optional] 
 **message** | **str** |  | [optional] 
 **debug_message** | **str** |  | [optional] 
 **sub_errors** | [**List[ApiValidationError]**](ApiValidationError.md) |  | [optional] 

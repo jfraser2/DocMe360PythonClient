@@ -49,10 +49,13 @@ class GetByIdFormDialog(object):
         try :
             if self.selected_menu_item == "FindByNotificationId" :
                 notification_controller = self.NotificationControllerApi()
-                self.result = notification_controller.find_by_notification_id(search_id)
+                response = notification_controller.find_by_notification_id_without_preload_content(search_id)
+                self.result = response.read().decode('utf-8')
+#                print(self.result);
             else :
                 template_controller = self.TemplateControllerApi()
-                self.result = template_controller.find_by_template_id(search_id)
+                response = template_controller.find_by_template_id_without_preload_content(search_id)
+                self.result = response.read().decode('utf-8')
         except Exception as e :
             self.result = self.process_general_exception(e)        
         finally :           

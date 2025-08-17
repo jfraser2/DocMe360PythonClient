@@ -18,7 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from datetime import datetime, timezone
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, AwareDatetime, TypeAdapter 
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_client.models.api_validation_error import ApiValidationError
 from typing import Optional, Set
@@ -29,7 +30,7 @@ class ApiError(BaseModel):
     ApiError
     """ # noqa: E501
     request_status: Optional[StrictStr] = Field(default=None, alias="requestStatus")
-    timestamp: Optional[StrictStr] = None
+    timestamp: Optional[datetime] = None
     message: Optional[StrictStr] = None
     debug_message: Optional[StrictStr] = Field(default=None, alias="debugMessage")
     sub_errors: Optional[List[ApiValidationError]] = Field(default=None, alias="subErrors")
@@ -94,7 +95,7 @@ class ApiError(BaseModel):
 
         _obj = cls.model_validate({
             "requestStatus": obj.get("requestStatus"),
-            "timestamp": obj.get("timestamp"),
+#            "timestamp": obj.get("timestamp"),
             "message": obj.get("message"),
             "debugMessage": obj.get("debugMessage"),
             "subErrors": [ApiValidationError.from_dict(_item) for _item in obj["subErrors"]] if obj.get("subErrors") is not None else None
