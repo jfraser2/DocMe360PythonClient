@@ -9,7 +9,6 @@ class NotificationMenu(object):
     from forms.get_all_dialog import GetAllFormDialog
     from forms.get_by_id_dialog import GetByIdFormDialog
     import tkinter.font as tkFont
-    import json
         
     '''
     classdocs
@@ -62,7 +61,7 @@ class NotificationMenu(object):
         if data :
             self.out_text_area.config(state="normal")
             self.out_text_area.delete("1.0", self.tk.END) # Delete from the first character to the end
-            self.out_text_area.insert("1.0", self.json.dumps(data, indent=4))
+            self.out_text_area.insert("1.0", data)
             self.out_text_area.config(state="disabled")
             self.out_text_area.grid()
         

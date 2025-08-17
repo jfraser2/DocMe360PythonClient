@@ -40,10 +40,12 @@ class GetAllFormDialog(object):
         try :
             if self.selected_menu_item == "AllNotifications" :
                 notification_controller = self.NotificationControllerApi()
-                self.result = notification_controller.all_notifications()
+                response = notification_controller.all_notifications_without_preload_content()
+                self.result = response.read().decode('utf-8')
             else :
                 template_controller = self.TemplateControllerApi()
-                self.result = template_controller.all_templates()
+                response = template_controller.all_templates_without_preload_content()
+                self.result = response.read().decode('utf-8')
         except Exception as e :
             self.result = self.process_general_exception(e)        
         finally :           
