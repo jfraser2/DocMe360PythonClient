@@ -74,6 +74,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ApiError](openapi_client/docs/ApiError.md)
+ - [ApiValidationError](openapi_client/docs/ApiValidationError.md)
  - [CreateNotification](openapi_client/docs/CreateNotification.md)
  - [CreateTemplate](openapi_client/docs/CreateTemplate.md)
  - [UpdateTemplate](openapi_client/docs/UpdateTemplate.md)

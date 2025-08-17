@@ -30,6 +30,8 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "ApiError",
+    "ApiValidationError",
     "CreateNotification",
     "CreateTemplate",
     "UpdateTemplate",
@@ -51,6 +53,8 @@ from openapi_client.exceptions import ApiAttributeError as ApiAttributeError
 from openapi_client.exceptions import ApiException as ApiException
 
 # import models into sdk package
+from openapi_client.models.api_error import ApiError as ApiError
+from openapi_client.models.api_validation_error import ApiValidationError as ApiValidationError
 from openapi_client.models.create_notification import CreateNotification as CreateNotification
 from openapi_client.models.create_template import CreateTemplate as CreateTemplate
 from openapi_client.models.update_template import UpdateTemplate as UpdateTemplate

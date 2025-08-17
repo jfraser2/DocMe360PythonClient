@@ -1,6 +1,5 @@
 # coding: utf-8
 
-# flake8: noqa
 """
     Available REST Services
 
@@ -14,9 +13,43 @@
 """  # noqa: E501
 
 
-# import models into model package
-from openapi_client.models.api_error import ApiError
+import unittest
+
 from openapi_client.models.api_validation_error import ApiValidationError
-from openapi_client.models.create_notification import CreateNotification
-from openapi_client.models.create_template import CreateTemplate
-from openapi_client.models.update_template import UpdateTemplate
+
+class TestApiValidationError(unittest.TestCase):
+    """ApiValidationError unit test stubs"""
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def make_instance(self, include_optional) -> ApiValidationError:
+        """Test ApiValidationError
+            include_optional is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `ApiValidationError`
+        """
+        model = ApiValidationError()
+        if include_optional:
+            return ApiValidationError(
+                object = '',
+                var_field = '',
+                rejected_value = '',
+                message = ''
+            )
+        else:
+            return ApiValidationError(
+        )
+        """
+
+    def testApiValidationError(self):
+        """Test ApiValidationError"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
+
+if __name__ == '__main__':
+    unittest.main()

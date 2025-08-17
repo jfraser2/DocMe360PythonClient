@@ -89,7 +89,7 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '403': "object",
+            '403': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -152,7 +152,7 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '403': "object",
+            '403': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -215,7 +215,7 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '403': "object",
+            '403': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -338,9 +338,9 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "object",
-            '400': "object",
-            '403': "object",
-            '404': "object",
+            '400': "ApiError",
+            '403': "ApiError",
+            '404': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -407,9 +407,9 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "object",
-            '400': "object",
-            '403': "object",
-            '404': "object",
+            '400': "ApiError",
+            '403': "ApiError",
+            '404': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -476,9 +476,9 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "object",
-            '400': "object",
-            '403': "object",
-            '404': "object",
+            '400': "ApiError",
+            '403': "ApiError",
+            '404': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -617,9 +617,9 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '400': "object",
-            '403': "object",
-            '404': "object",
+            '400': "ApiError",
+            '403': "ApiError",
+            '404': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -686,9 +686,9 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '400': "object",
-            '403': "object",
-            '404': "object",
+            '400': "ApiError",
+            '403': "ApiError",
+            '404': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -755,9 +755,9 @@ class NotificationControllerApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "object",
-            '400': "object",
-            '403': "object",
-            '404': "object",
+            '400': "ApiError",
+            '403': "ApiError",
+            '404': "ApiError",
         }
         response_data = self.api_client.call_api(
             *_param,
