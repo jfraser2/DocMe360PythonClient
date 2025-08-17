@@ -22,6 +22,4 @@ openapi_client/models/create_template.py
 openapi_client/models/update_template.py
 openapi_client/rest.py
 openapi_client/test/__init__.py
-openapi_client/test/test_api_error.py
-openapi_client/test/test_api_validation_error.py
 openapi_client_README.md

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **str** |  | [optional] 
+**request_status** | **str** |  | [optional] 
 **timestamp** | **str** |  | [optional] 
 **message** | **str** |  | [optional] 
 **debug_message** | **str** |  | [optional] 

@@ -28,12 +28,12 @@ class ApiError(BaseModel):
     """
     ApiError
     """ # noqa: E501
-    status: Optional[StrictStr] = None
+    request_status: Optional[StrictStr] = Field(default=None, alias="requestStatus")
     timestamp: Optional[StrictStr] = None
     message: Optional[StrictStr] = None
     debug_message: Optional[StrictStr] = Field(default=None, alias="debugMessage")
     sub_errors: Optional[List[ApiValidationError]] = Field(default=None, alias="subErrors")
-    __properties: ClassVar[List[str]] = ["status", "timestamp", "message", "debugMessage", "subErrors"]
+    __properties: ClassVar[List[str]] = ["requestStatus", "timestamp", "message", "debugMessage", "subErrors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +93,7 @@ class ApiError(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status"),
+            "requestStatus": obj.get("requestStatus"),
             "timestamp": obj.get("timestamp"),
             "message": obj.get("message"),
             "debugMessage": obj.get("debugMessage"),
