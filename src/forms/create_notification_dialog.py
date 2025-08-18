@@ -10,6 +10,7 @@ class CreateNotificationFormDialog(object):
     import sys
     import traceback
     import re  # noqa: F401
+    import json
         
     '''
     classdocs
@@ -139,4 +140,4 @@ class CreateNotificationFormDialog(object):
             "traceback": formatted_traceback
         }
                 
-        return error_data                 
+        return self.json.dumps(error_data, indent=4)                 
