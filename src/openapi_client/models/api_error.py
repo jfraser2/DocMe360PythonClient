@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime, timezone
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, AwareDatetime, TypeAdapter 
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_client.models.api_validation_error import ApiValidationError
 from typing import Optional, Set
@@ -35,6 +35,16 @@ class ApiError(BaseModel):
     debug_message: Optional[StrictStr] = Field(default=None, alias="debugMessage")
     sub_errors: Optional[List[ApiValidationError]] = Field(default=None, alias="subErrors")
     __properties: ClassVar[List[str]] = ["requestStatus", "timestamp", "message", "debugMessage", "subErrors"]
+
+    @field_validator('timestamp')
+    def timestamp_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]) ([A-Za-z]{3}) \([+\-]\d{2}:\d{2}\)$", value):
+            raise ValueError(r"must validate the regular expression /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]) ([A-Za-z]{3}) \([+\-]\d{2}:\d{2}\)$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -95,7 +105,7 @@ class ApiError(BaseModel):
 
         _obj = cls.model_validate({
             "requestStatus": obj.get("requestStatus"),
-#            "timestamp": obj.get("timestamp"),
+            "timestamp": obj.get("timestamp"),
             "message": obj.get("message"),
             "debugMessage": obj.get("debugMessage"),
             "subErrors": [ApiValidationError.from_dict(_item) for _item in obj["subErrors"]] if obj.get("subErrors") is not None else None
