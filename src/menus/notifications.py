@@ -8,6 +8,7 @@ from openapi_client.exceptions import NotFoundException
 class NotificationMenu(object):
     from forms.get_all_dialog import GetAllFormDialog
     from forms.get_by_id_dialog import GetByIdFormDialog
+    from forms.create_notification_dialog import CreateNotificationFormDialog
     import tkinter.font as tkFont
         
     '''
@@ -50,8 +51,16 @@ class NotificationMenu(object):
                 command=command).grid()
   
     def create_notification(self):
-        print("Create Notification")
-        # Add logic to change content or view
+#        print("Create Notification")
+        dialog = self.CreateNotificationFormDialog(self.app_root, self.tk, self.ttk, "Create Notification")
+        dialog.build()
+        data = dialog.show()
+        if data :
+            self.out_text_area.config(state="normal")
+            self.out_text_area.delete("1.0", self.tk.END) # Delete from the first character to the end
+            self.out_text_area.insert("1.0", data)
+            self.out_text_area.config(state="disabled")
+            self.out_text_area.grid()
 
     def all_notifications(self):
 #        print("Get All Notifications")
