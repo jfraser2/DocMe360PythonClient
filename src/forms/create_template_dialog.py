@@ -9,6 +9,7 @@ class CreateTemplateFormDialog(object):
     from openapi_client.models.create_template import CreateTemplate
     import sys
     import traceback
+    import json
     
     '''
     classdocs
@@ -107,4 +108,4 @@ class CreateTemplateFormDialog(object):
             "traceback": formatted_traceback
         }
                 
-        return error_data                  
+        return self.json.dumps(error_data, indent=4)                  

@@ -8,7 +8,8 @@ class GetAllFormDialog(object):
     from openapi_client.api.notification_controller_api import NotificationControllerApi
     from openapi_client.api.template_controller_api import TemplateControllerApi
     import sys
-    import traceback    
+    import traceback
+    import json    
     
     '''
     classdocs
@@ -85,4 +86,4 @@ class GetAllFormDialog(object):
             "traceback": formatted_traceback
         }
                 
-        return error_data          
+        return self.json.dumps(error_data, indent=4)          

@@ -9,7 +9,8 @@ class UpdateTemplateFormDialog(object):
     from openapi_client.models.update_template import UpdateTemplate
     import sys
     import traceback
-    import re  # noqa: F401    
+    import re  # noqa: F401 
+    import json   
         
     '''
     classdocs
@@ -132,4 +133,4 @@ class UpdateTemplateFormDialog(object):
             "traceback": formatted_traceback
         }
                 
-        return error_data          
+        return self.json.dumps(error_data, indent=4)          
