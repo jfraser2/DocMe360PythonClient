@@ -4,17 +4,17 @@ Created on Aug 17, 2025
 @author: joe
 '''
 
-class UpdateTemplateFormDialog(object):
+class CreateTemplateFormDialog(object):
     from openapi_client.api.template_controller_api import TemplateControllerApi
-    from openapi_client.models.update_template import UpdateTemplate
+    from openapi_client.models.create_template import CreateTemplate
     import sys
     import traceback
-    import re  # noqa: F401    
-        
+    
     '''
     classdocs
     '''
-    
+
+
     def __init__(self, app_root, tk, ttk, title):
         self.app_root = app_root
         self.tk = tk
@@ -37,55 +37,31 @@ class UpdateTemplateFormDialog(object):
         # Center the dialog box
         self.center_window(self.top)        
 
-        self.template_id_var = self.tk.StringVar()
-        self.new_template_text_var = self.tk.StringVar()
+        self.template_text_var = self.tk.StringVar()
 
         # Create form elements
-        self.ttk.Label(self.top, text="Template Id:").grid(row=0, column=0, padx=5, pady=5, sticky="w")
-        self.ttk.Entry(self.top, textvariable=self.template_id_var).grid(row=0, column=1, padx=5, pady=5, sticky="ew")
-
-        self.ttk.Label(self.top, text="New Template Text:").grid(row=1, column=0, padx=5, pady=5, sticky="w")
-        self.ttk.Entry(self.top, textvariable=self.new_template_text_var).grid(row=1, column=1, padx=5, pady=5, sticky="ew")
+        self.ttk.Label(self.top, text="Template Text:").grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        self.ttk.Entry(self.top, textvariable=self.template_text_var).grid(row=1, column=1, padx=5, pady=5, sticky="ew")
         
         # Error message Label
         self.field_error_label = self.ttk.Label(self.top, text="", style="Red.TLabel")
         self.field_error_label.grid(row=2, column=0, columnspan=3, padx=5, pady=5)        
         
         # Buttons
-        self.ttk.Button(self.top, text="Submit", command=self.validate_form).grid(row=4, column=0, padx=5, pady=5)
+        self.ttk.Button(self.top, text="Submit", command=self.submit_form).grid(row=4, column=0, padx=5, pady=5)
         self.ttk.Button(self.top, text="Clear", command=self.clear_form).grid(row=4, column=1, padx=5, pady=5)
         self.ttk.Button(self.top, text="Cancel", command=self.cancel_dialog).grid(row=4, column=2, padx=5, pady=5)
         self.result = None  # To store the form data
         
-    def validate_form(self):
-        update_id = self.template_id_var.get()
-#        new_text = self.new_template_text_var.get()
-
-        if not update_id :
-            self.field_error_label.configure(text="Template Id field cannot be empty.")
-            return False
-        
-        # r before a string tells the Python interpreter to treat backslashes as a literal (raw) character.
-        # not as an escape character
-        if not self.re.match(r"[0-9]+", update_id) :
-            self.field_error_label.configure(text="Template Id invalid. Only Numbers allowed.")
-            return False
-
-        # Clear any previous error messages
-        self.field_error_label.configure(text="") 
-        self.submit_form()
-        return True
-            
     def submit_form(self):
         
-        request_body = self.UpdateTemplate(
-            template_id = self.template_id_var.get(),
-            new_template_text = self.new_template_text_var.get()
+        request_body = self.CreateTemplate(
+            template_text = self.template_text_var.get()
         )
         
         try :
             template_controller = self.TemplateControllerApi()
-            response = template_controller.update_template_without_preload_content(request_body)
+            response = template_controller.create_template_without_preload_content(request_body)
             self.result = response.read().decode('utf-8')
         except Exception as e :
             self.result = self.process_general_exception(e)        
@@ -93,8 +69,7 @@ class UpdateTemplateFormDialog(object):
             self.top.destroy()  # Close the dialog
             
     def clear_form(self):
-        self.template_id_var.set("")        
-        self.new_template_text_var.set("")
+        self.template_text_var.set("")
         # Clear any previous error messages
         self.field_error_label.configure(text="") 
 
@@ -132,4 +107,4 @@ class UpdateTemplateFormDialog(object):
             "traceback": formatted_traceback
         }
                 
-        return error_data          
+        return error_data                  
