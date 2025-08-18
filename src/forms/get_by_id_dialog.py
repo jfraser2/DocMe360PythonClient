@@ -29,6 +29,12 @@ class GetByIdFormDialog(object):
         self.top.geometry("250x150")
         self.top.grab_set()  # Grabs all events until the dialog is closed
         
+        # Create a Style object
+        self.style = self.ttk.Style()
+        # Configure a custom style for TLabel (the base style for ttk.Label)
+        # You can name the style anything, e.g., 'Red.TLabel'
+        self.style.configure('Red.TLabel', foreground='red')         
+        
         # Center the dialog box
         self.center_window(self.top)        
 
@@ -37,12 +43,28 @@ class GetByIdFormDialog(object):
         # Create form elements
         self.ttk.Label(self.top, text="Id:").grid(row=0, column=0, padx=5, pady=5, sticky="w")
         self.ttk.Entry(self.top, textvariable=self.id_var).grid(row=0, column=1, padx=5, pady=5, sticky="ew")
+        
+        # Error message Label
+        self.id_error_label = self.ttk.Label(self.top, text="", style="Red.TLabel")
+        self.id_error_label.grid(row=1, column=0, columnspan=2, padx=5, pady=5)        
 
         # Buttons
-        self.ttk.Button(self.top, text="Submit", command=self.submit_form).grid(row=2, column=0, padx=5, pady=5)
-        self.ttk.Button(self.top, text="Cancel", command=self.cancel_dialog).grid(row=2, column=1, padx=5, pady=5)
+        self.ttk.Button(self.top, text="Submit", command=self.validate_form).grid(row=3, column=0, padx=5, pady=5)
+        self.ttk.Button(self.top, text="Cancel", command=self.cancel_dialog).grid(row=3, column=1, padx=5, pady=5)
         self.result = None  # To store the form data
 
+    def validate_form(self):
+        search_id = self.id_var.get()
+
+        if not search_id :
+            self.id_error_label.configure(text="id field cannot be empty.")
+            return False
+
+        # Clear any previous error messages
+        self.id_error_label.configure(text="") 
+        self.submit_form()
+        return True        
+        
     def submit_form(self):
         search_id =  self.id_var.get()
         
