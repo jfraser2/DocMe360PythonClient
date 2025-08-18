@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/openapi_client/api/notification_controller_api.py=utf-8
+encoding//src/openapi_client/api/template_controller_api.py=utf-8
 encoding//src/openapi_client/api_client.py=utf-8
 encoding//src/openapi_client/models/api_error.py=utf-8
+encoding//src/openapi_client/models/create_notification.py=utf-8
+encoding//src/openapi_client/models/create_template.py=utf-8
+encoding//src/openapi_client/models/update_template.py=utf-8
 encoding//src/openapi_client/rest.py=utf-8
 encoding//src/openapi_client/test/test_api_error.py=utf-8
