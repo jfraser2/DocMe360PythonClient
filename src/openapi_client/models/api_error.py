@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_client.models.api_validation_error import ApiValidationError
 from typing import Optional, Set
@@ -37,6 +37,7 @@ class ApiError(BaseModel):
     __properties: ClassVar[List[str]] = ["requestStatus", "timestamp", "message", "debugMessage", "subErrors"]
 
     @field_validator('timestamp')
+    @classmethod    
     def timestamp_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:

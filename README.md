@@ -13,7 +13,7 @@ Follow all directions in the README.md<br/>
 # Required Client Side Installs(Do this second)
 open your fav Windows Shell Instance(Command Prompt Instance) as Administrator<br/>
 installs with pip3 will go to folder C:\Program Files\Python\Python313\Lib\site-packages<br/>
-pip3 install pydantic<br/>
+pip3 install pydantic -U<br/>
 pip3 install python-dateutil<br/>
 pip3 install urllib3<br/>
 

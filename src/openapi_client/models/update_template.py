@@ -33,6 +33,7 @@ class UpdateTemplate(BaseModel):
     __properties: ClassVar[List[str]] = ["templateId", "newTemplateText"]
 
     @field_validator('template_id')
+    @classmethod    
     def template_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"[0-9]+", value):
