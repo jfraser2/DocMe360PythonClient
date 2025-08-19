@@ -44,7 +44,7 @@ class ApiError(BaseModel):
             return value
 
         if not re.match(r"^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]) ([A-Za-z]{3}) \([+\-]\d{2}:\d{2}\)$", value):
-            raise ValueError(r"must validate the regular expression /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]) ([A-Za-z]{3}) \([+\-]\d{2}:\d{2}\)$/")
+            raise ValueError(r"timestamp must validate the regular expression /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4} (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]) ([A-Za-z]{3}) \([+\-]\d{2}:\d{2}\)$/")
         return value
 
     model_config = ConfigDict(

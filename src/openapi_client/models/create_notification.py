@@ -39,7 +39,7 @@ class CreateNotification(BaseModel):
     def phone_number_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^\d{3}[- .]?\d{3}[- .]?\d{4}$", value):
-            raise ValueError(r"must validate the regular expression /^\d{3}[- .]?\d{3}[- .]?\d{4}$/")
+            raise ValueError(r"Phone Number must validate the regular expression /^\d{3}[- .]?\d{3}[- .]?\d{4}$/")
         return value
 
     @field_validator('template_id')
@@ -50,7 +50,7 @@ class CreateNotification(BaseModel):
             return value
 
         if not re.match(r"[0-9]*", value):
-            raise ValueError(r"must validate the regular expression /[0-9]*/")
+            raise ValueError(r"Template Id must validate the regular expression /[0-9]*/")
         return value
 
     model_config = ConfigDict(
