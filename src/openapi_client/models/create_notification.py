@@ -35,6 +35,7 @@ class CreateNotification(BaseModel):
     __properties: ClassVar[List[str]] = ["phoneNumber", "personalization", "templateId", "templateText"]
 
     @field_validator('phone_number')
+    @classmethod    
     def phone_number_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"^\d{3}[- .]?\d{3}[- .]?\d{4}$", value):
@@ -42,6 +43,7 @@ class CreateNotification(BaseModel):
         return value
 
     @field_validator('template_id')
+    @classmethod    
     def template_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
