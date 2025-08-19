@@ -37,7 +37,7 @@ class UpdateTemplate(BaseModel):
     def template_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if not re.match(r"[0-9]+", value):
-            raise ValueError(r"must validate the regular expression /[0-9]+/")
+            raise ValueError(r"Template Id must validate the regular expression /[0-9]+/")
         return value
 
     model_config = ConfigDict(
