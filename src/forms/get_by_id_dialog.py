@@ -3,7 +3,6 @@ Created on Aug 15, 2025
 
 @author: joe
 '''
-from openapi_client.exceptions import NotFoundException
 
 class GetByIdFormDialog(object):
     from openapi_client.api.notification_controller_api import NotificationControllerApi
